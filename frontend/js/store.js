@@ -2,7 +2,7 @@
 // STORE — app state (populated from the backend API)
 // ============================================================
 const STORE = {
-  theme: localStorage.getItem('hearth-theme') || 'dark',
+  theme: localStorage.getItem('hearth-theme') || 'light',
   page: 'landing',
   sidebarOpen: false,
 

@@ -139,26 +139,42 @@ function renderDashboard(c) {
   });
 }
 
+function getChartTheme() {
+  const s = getComputedStyle(document.documentElement);
+  const v = (k) => s.getPropertyValue(k).trim();
+  return {
+    muted: v('--ink-muted'),
+    border: v('--border'),
+    copper: v('--copper'),
+    amber: v('--amber'),
+    coral: v('--coral'),
+    dark: document.documentElement.getAttribute('data-theme') === 'dark',
+  };
+}
+
 function drawCashflowChart() {
   const ctx = $('cashflow-chart');
   if (!ctx) return;
+  const cc = getChartTheme();
   const cashflow = (STORE.summary && STORE.summary.cashflow) || [];
-  const months = cashflow.map((x) => x.month);
-  const income = cashflow.map((x) => x.income);
-  const expense = cashflow.map((x) => x.expense);
+  const isDark = cc.dark;
+  const gridColor = isDark ? 'rgba(248,244,237,0.05)' : 'rgba(18,14,9,0.05)';
   charts['cashflow'] = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: months,
+      labels: cashflow.map((x) => x.month),
       datasets: [
-        { label: 'Income', data: income, backgroundColor: 'rgba(206,154,82,0.7)', borderRadius: 6, borderSkipped: false },
-        { label: 'Expenses', data: expense, backgroundColor: 'rgba(226,130,95,0.55)', borderRadius: 6, borderSkipped: false },
+        { label: 'Income',   data: cashflow.map((x) => x.income),  backgroundColor: isDark ? 'rgba(208,160,56,0.7)' : 'rgba(192,107,48,0.65)', borderRadius: 6, borderSkipped: false },
+        { label: 'Expenses', data: cashflow.map((x) => x.expense), backgroundColor: isDark ? 'rgba(224,112,96,0.55)' : 'rgba(208,72,48,0.45)', borderRadius: 6, borderSkipped: false },
       ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: 'var(--ink-soft)', font: { family: 'Plus Jakarta Sans', size: 12, weight: '600' } } } },
-      scales: { x: { ticks: { color: '#8C8174', font: { family: 'JetBrains Mono', size: 11 } }, grid: { color: 'rgba(247,243,236,0.04)' } }, y: { ticks: { color: '#8C8174', font: { family: 'JetBrains Mono', size: 11 }, callback: (v) => '$' + v.toLocaleString() }, grid: { color: 'rgba(247,243,236,0.06)' } } },
+      plugins: { legend: { labels: { color: cc.muted, font: { family: 'Plus Jakarta Sans', size: 12, weight: '600' } } } },
+      scales: {
+        x: { ticks: { color: cc.muted, font: { family: 'DM Mono', size: 10 } }, grid: { color: gridColor } },
+        y: { ticks: { color: cc.muted, font: { family: 'DM Mono', size: 10 }, callback: (v) => '$' + v.toLocaleString() }, grid: { color: gridColor } },
+      },
     },
   });
 }
