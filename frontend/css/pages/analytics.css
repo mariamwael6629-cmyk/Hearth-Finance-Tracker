@@ -1,0 +1,12 @@
+/* ============================================================
+   ANALYTICS
+   ============================================================ */
+.analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.analytics-full { grid-column: 1 / -1; }
+.chart-tabs { display: flex; gap: 4px; }
+.chart-tab { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: var(--r-pill); border: 1.5px solid var(--border); background: none; color: var(--ink-muted); cursor: pointer; transition: all .15s; }
+.chart-tab.active { background: var(--copper); border-color: var(--copper); color: #fff; }
+.trend-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+.trend-row:last-child { border-bottom: none; }
+.trend-mini { height: 5px; border-radius: var(--r-pill); flex-shrink: 0; }
+.trend-row .bars { display: flex; align-items: center; gap: 12px; }

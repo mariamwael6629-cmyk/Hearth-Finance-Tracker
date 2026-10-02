@@ -1,0 +1,96 @@
+/* ---------- DESIGN TOKENS — LIGHT (DEFAULT) ---------- */
+:root,
+html[data-theme="light"] {
+  /* Backgrounds */
+  --bg:              #F5F0E8;
+  --bg-deep:         #EDE8DF;
+  --bg-soft:         #FEFCF8;
+
+  /* Surfaces */
+  --surface:         rgba(18,14,9,.035);
+  --surface-hover:   rgba(18,14,9,.065);
+  --surface-solid:   #FFFFFF;
+  --surface-solid-2: #F9F5EF;
+
+  /* Borders */
+  --border:          rgba(18,14,9,.09);
+  --border-soft:     rgba(18,14,9,.055);
+  --border-strong:   rgba(18,14,9,.15);
+
+  /* Ink */
+  --ink:             #18140E;
+  --ink-soft:        #4C4438;
+  --ink-muted:       #7A7064;
+  --ink-faint:       #B8AEA0;
+
+  /* Brand */
+  --copper:          #C06B30;
+  --copper-bright:   #C97840;
+  --copper-bg:       rgba(192,107,48,.08);
+  --copper-bg-hover: rgba(192,107,48,.15);
+  --burnt:           #983C18;
+  --coral:           #D04830;
+  --terracotta:      #A84030;
+  --amber:           #C89428;
+  --rose-gold:       #C09080;
+
+  /* Effects */
+  --grain-opacity:   0.022;
+  --shadow-sm:       0 1px 3px rgba(18,14,9,.06), 0 1px 2px -1px rgba(18,14,9,.04);
+  --shadow-card:     0 1px 4px rgba(18,14,9,.06), 0 3px 10px -4px rgba(18,14,9,.08);
+  --shadow-pop:      0 16px 48px -16px rgba(18,14,9,.18), 0 6px 16px -8px rgba(18,14,9,.1);
+  --shadow-copper:   0 0 0 1px rgba(192,107,48,.2), 0 4px 16px -4px rgba(192,107,48,.22);
+  --scrim:           rgba(18,14,9,.45);
+
+  /* Radius */
+  --r-sm:  6px;
+  --r-md:  10px;
+  --r-lg:  14px;
+  --r-xl:  20px;
+  --r-pill: 999px;
+
+  /* Layout */
+  --sidebar-w: 240px;
+  --topbar-h:   58px;
+
+  /* Fonts */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
+}
+
+html[data-theme="dark"] {
+  --bg:              #110F0A;
+  --bg-deep:         #0D0B07;
+  --bg-soft:         #181410;
+  --surface:         rgba(248,244,237,.05);
+  --surface-hover:   rgba(248,244,237,.085);
+  --surface-solid:   #1C1810;
+  --surface-solid-2: #221F17;
+
+  --border:          rgba(248,244,237,.08);
+  --border-soft:     rgba(248,244,237,.045);
+  --border-strong:   rgba(248,244,237,.13);
+
+  --ink:             #F2EDE3;
+  --ink-soft:        #C4BAA8;
+  --ink-muted:       #8A8070;
+  --ink-faint:       #504840;
+
+  --copper:          #CC7E40;
+  --copper-bright:   #E09252;
+  --copper-bg:       rgba(204,126,64,.1);
+  --copper-bg-hover: rgba(204,126,64,.18);
+  --burnt:           #B05A28;
+  --coral:           #E07060;
+  --terracotta:      #B04838;
+  --amber:           #D0A038;
+  --rose-gold:       #D0A090;
+
+  --grain-opacity:   0.05;
+  --shadow-sm:       0 1px 4px rgba(0,0,0,.4);
+  --shadow-card:     0 2px 12px -4px rgba(0,0,0,.55), 0 1px 4px rgba(0,0,0,.3);
+  --shadow-pop:      0 28px 72px -20px rgba(0,0,0,.72);
+  --shadow-copper:   0 0 0 1px rgba(204,126,64,.28), 0 6px 24px -6px rgba(204,126,64,.38);
+  --scrim:           rgba(8,6,3,.7);
+}

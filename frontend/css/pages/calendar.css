@@ -1,0 +1,31 @@
+/* ============================================================
+   CALENDAR
+   ============================================================ */
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+.cal-day-label {
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted);
+  text-align: center; padding: 8px 0 4px;
+}
+.cal-day {
+  min-height: 50px; border-radius: var(--r-sm); padding: 7px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 12.5px; font-family: var(--font-mono); color: var(--ink-soft);
+  background: var(--surface);
+}
+.cal-day.today        { background: var(--copper-bg); color: var(--copper); font-weight: 700; }
+.cal-day.other-month  { opacity: .3; }
+.cal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+.bill-list { display: flex; flex-direction: column; }
+.bill-item { display: flex; align-items: center; gap: 12px; padding: 11px 20px; border-top: 1px solid var(--border-soft); }
+.bill-date { display: flex; flex-direction: column; align-items: center; width: 34px; flex-shrink: 0; }
+.bill-date .d { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1; }
+.bill-date .m { font-family: var(--font-mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); }
+.bill-detail { flex: 1; min-width: 0; }
+.bill-detail .n { font-size: 13.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bill-detail .s { font-size: 11.5px; color: var(--ink-muted); font-family: var(--font-mono); }
+.bill-amount { font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--ink); }
+.bill-status { font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: .06em; padding: 2px 8px; border-radius: var(--r-pill); }
+.bill-status.paid     { background: rgba(200,148,40,.12); color: var(--amber); }
+.bill-status.pending  { background: rgba(208,72,48,.1);   color: var(--coral); }
+.bill-status.upcoming { background: var(--surface);        color: var(--ink-muted); }

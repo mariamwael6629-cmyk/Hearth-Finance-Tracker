@@ -1,0 +1,11 @@
+/* ============================================================
+   HEARTH FINANCE — Design System v2
+   Light-first · Editorial · Warm
+   ============================================================ */
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.5; min-height: 100vh; }
+img, video { max-width: 100%; display: block; }
+ul, ol { list-style: none; }

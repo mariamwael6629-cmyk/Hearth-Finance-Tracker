@@ -1,0 +1,10 @@
+/* ============================================================
+   SUBSCRIPTIONS
+   ============================================================ */
+.sub-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 16px; }
+.sub-card { padding: 20px; display: flex; align-items: flex-start; gap: 14px; }
+.sub-logo { font-size: 30px; flex-shrink: 0; margin-top: 2px; }
+.sub-info .name   { font-size: 14px; font-weight: 700; color: var(--ink); font-family: var(--font-display); margin-bottom: 3px; }
+.sub-info .cycle  { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 9px; }
+.sub-info .amount { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--copper); }
+.sub-info .next   { font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); margin-top: 6px; }

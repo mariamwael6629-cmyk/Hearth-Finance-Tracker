@@ -57,7 +57,11 @@ Hearth-Finance-Tracker/
 └── frontend/
 ├── index.html               # Main application template
 ├── css/
-│   └── styles.css           # Clean UI Design System (Dark & Light modes)
+│   ├── base.css, tokens.css # Reset + design tokens (Dark & Light modes)
+│   ├── components.css       # Typography, buttons, inputs, badges, cards
+│   ├── app-shell.css        # Sidebar, main area, topbar
+│   ├── pages/               # landing, auth, dashboard, transactions, budget, savings, analytics, reports, calendar, subscriptions, settings
+│   └── modals.css, toasts.css, states.css, boot-loader.css, animations.css, responsive.css
 └── js/
 ├── config.js            # Global network environment configs
 ├── api.js               # Reactive fetch wrapper (injects Bearer tokens)

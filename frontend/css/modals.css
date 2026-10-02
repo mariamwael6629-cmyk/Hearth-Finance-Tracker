@@ -1,0 +1,23 @@
+/* ============================================================
+   MODALS
+   ============================================================ */
+.modal-scrim {
+  position: fixed; inset: 0; z-index: 400;
+  background: var(--scrim);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  animation: fadeIn .2s ease;
+}
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.modal {
+  background: var(--surface-solid); border: 1px solid var(--border);
+  border-radius: var(--r-xl); padding: 28px;
+  width: 100%; max-width: 440px;
+  box-shadow: var(--shadow-pop);
+  animation: slideUp .25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes slideUp { from { opacity:0; transform:translateY(18px) scale(.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+.modal h3 { font-size: 17px; margin-bottom: 20px; }
+.modal-form { display: flex; flex-direction: column; gap: 14px; }
+.modal-form .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; }

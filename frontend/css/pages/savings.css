@@ -1,0 +1,19 @@
+/* ============================================================
+   SAVINGS GOALS
+   ============================================================ */
+.goals-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 16px; }
+.goal-card { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.goal-card .gc-head { display: flex; align-items: center; justify-content: space-between; }
+.goal-card .gc-icon { font-size: 26px; }
+.goal-track { height: 6px; background: var(--surface); border-radius: var(--r-pill); overflow: hidden; }
+.goal-fill  { height: 100%; border-radius: var(--r-pill); background: var(--copper); transition: width .4s ease; }
+.goal-add {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 36px 20px; cursor: pointer;
+  border: 2px dashed var(--border); border-radius: var(--r-lg);
+  color: var(--ink-muted); font-size: 13.5px; font-weight: 600;
+  transition: all .18s; background: transparent;
+}
+.goal-add:hover { border-color: var(--copper); color: var(--copper); background: var(--copper-bg); }
+.goal-add .add-icon { font-size: 28px; opacity: .6; }
+.goal-eta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }

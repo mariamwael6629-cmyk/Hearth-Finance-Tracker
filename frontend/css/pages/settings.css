@@ -1,0 +1,32 @@
+/* ============================================================
+   SETTINGS / PROFILE
+   ============================================================ */
+.settings-layout { display: grid; grid-template-columns: 200px 1fr; gap: 18px; align-items: start; }
+.settings-nav { padding: 8px; }
+.s-nav-item { padding: 9px 12px; border-radius: var(--r-md); font-size: 13.5px; font-weight: 500; color: var(--ink-muted); cursor: pointer; transition: all .15s; }
+.s-nav-item:hover  { background: var(--surface); color: var(--ink); }
+.s-nav-item.active { background: var(--copper-bg); color: var(--copper); font-weight: 600; }
+.settings-section { display: flex; flex-direction: column; gap: 16px; }
+.settings-block { padding: 24px; }
+.settings-block h3 { font-size: 15px; margin-bottom: 18px; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border-soft); gap: 20px; }
+.setting-row:last-child { border-bottom: none; }
+.s-info .s-label { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.s-info .s-desc  { font-size: 12px; color: var(--ink-muted); }
+
+/* Toggle */
+.toggle { display: inline-flex; align-items: center; cursor: pointer; }
+.toggle input { display: none; }
+.toggle-track { width: 38px; height: 21px; border-radius: var(--r-pill); background: var(--border); transition: background .2s; position: relative; }
+.toggle input:checked ~ .toggle-track { background: var(--copper); }
+.toggle-thumb { position: absolute; top: 3px; left: 3px; width: 15px; height: 15px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: transform .2s; }
+.toggle input:checked ~ .toggle-track .toggle-thumb { transform: translateX(17px); }
+
+/* Profile */
+.profile-hero { display: flex; align-items: center; gap: 20px; padding: 20px; }
+.profile-avatar {
+  width: 64px; height: 64px; border-radius: 18px;
+  background: var(--copper); color: #fff;
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}

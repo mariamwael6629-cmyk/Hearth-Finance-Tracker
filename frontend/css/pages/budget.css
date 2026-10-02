@@ -1,0 +1,15 @@
+/* ============================================================
+   BUDGET
+   ============================================================ */
+.budget-totals { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+.budget-total-card { padding: 18px 20px; text-align: center; }
+.budget-total-card .bt-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
+.budget-total-card .bt-val   { font-family: var(--font-display); font-size: 28px; font-weight: 400; color: var(--ink); }
+.budget-month-picker { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.budget-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 16px; }
+.budget-card { padding: 20px; }
+.budget-card .bc-head  { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.budget-card .bc-icon  { font-size: 22px; }
+.budget-card .bc-title { font-size: 14px; font-weight: 700; font-family: var(--font-display); color: var(--ink); }
+.budget-card .bc-sub   { font-size: 11px; color: var(--ink-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .06em; margin-top: 1px; }
+.budget-progress { margin-bottom: 10px; }

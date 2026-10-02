@@ -1,0 +1,9 @@
+/* ============================================================
+   REPORTS
+   ============================================================ */
+.report-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.report-card { padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.report-icon { font-size: 26px; }
+.report-card h3 { font-size: 14px; font-weight: 700; font-family: var(--font-display); }
+.report-card p  { font-size: 13px; color: var(--ink-muted); line-height: 1.55; flex: 1; }
+.export-row { display: flex; gap: 8px; margin-top: 4px; }
