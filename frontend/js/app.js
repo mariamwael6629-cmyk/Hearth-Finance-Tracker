@@ -22,19 +22,19 @@ function render() {
 function renderShell(app) {
   app.className = 'app-shell';
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '◈' },
-    { id: 'transactions', label: 'Transactions', icon: '⇌' },
-    { id: 'budget', label: 'Budget Planner', icon: '◎' },
-    { id: 'savings', label: 'Savings Goals', icon: '◑' },
-    { id: 'analytics', label: 'Analytics', icon: '◆' },
-    { id: 'reports', label: 'Reports', icon: '≡' },
-    { id: 'subscriptions', label: 'Subscriptions', icon: '↻' },
-    { id: 'calendar', label: 'Calendar', icon: '▦' },
-    { id: 'settings', label: 'Settings', icon: '⊙' },
-    { id: 'profile', label: 'Profile', icon: '◯' },
+    { id: 'dashboard', label: 'Dashboard', icon: icon('dashboard') },
+    { id: 'transactions', label: 'Transactions', icon: icon('transactions') },
+    { id: 'budget', label: 'Budget Planner', icon: icon('budget') },
+    { id: 'savings', label: 'Savings Goals', icon: icon('savings') },
+    { id: 'analytics', label: 'Analytics', icon: icon('analytics') },
+    { id: 'reports', label: 'Reports', icon: icon('reports') },
+    { id: 'subscriptions', label: 'Subscriptions', icon: icon('subscriptions') },
+    { id: 'calendar', label: 'Calendar', icon: icon('calendar') },
+    { id: 'settings', label: 'Settings', icon: icon('settings') },
+    { id: 'profile', label: 'Profile', icon: icon('profile') },
   ];
   const pageTitle = { dashboard: 'Dashboard', transactions: 'Transactions', budget: 'Budget Planner', savings: 'Savings Goals', analytics: 'Analytics', reports: 'Reports', subscriptions: 'Subscriptions', calendar: 'Financial Calendar', settings: 'Settings', profile: 'Profile' };
-  const pageSubtitle = { dashboard: `Good ${getGreeting()}, ${STORE.currentUser.first_name} ✦`, transactions: 'All your transactions', budget: 'Plan and track spending', savings: 'Your goals in motion', analytics: 'Patterns & trends', reports: 'Export & download', subscriptions: 'Active subscriptions', calendar: 'Bills & reminders', settings: 'Preferences', profile: 'Your account' };
+  const pageSubtitle = { dashboard: `Good ${getGreeting()}, ${STORE.currentUser.first_name}`, transactions: 'All your transactions', budget: 'Plan and track spending', savings: 'Your goals in motion', analytics: 'Patterns & trends', reports: 'Export & download', subscriptions: 'Active subscriptions', calendar: 'Bills & reminders', settings: 'Preferences', profile: 'Your account' };
 
   app.innerHTML = `
   <aside class="sidebar" id="sidebar">
@@ -54,7 +54,7 @@ function renderShell(app) {
     <button class="nav-item ${STORE.page === n.id ? 'active' : ''}" onclick="navigate('${n.id}')">
       <span class="ic">${n.icon}</span>${n.label}
     </button>`).join('')}
-    <button class="nav-item" onclick="handleLogout()"><span class="ic">⏻</span>Log out</button>
+    <button class="nav-item" onclick="handleLogout()"><span class="ic">${icon('logout')}</span>Log out</button>
     <div class="sidebar-foot">
       <div class="user-chip">
         <div class="avatar">${STORE.currentUser.initials}</div>
@@ -65,20 +65,20 @@ function renderShell(app) {
   <div class="main-area">
     <header class="topbar">
       <div style="display:flex;align-items:center;gap:14px">
-        <button class="btn-icon mobile-toggle" onclick="toggleSidebar()" title="Menu">☰</button>
+        <button class="btn-icon mobile-toggle" onclick="toggleSidebar()" title="Menu" aria-label="Menu">${icon('menu', 20)}</button>
         <div class="page-title-row">
           <h1>${pageTitle[STORE.page] || STORE.page}</h1>
           <span>${pageSubtitle[STORE.page] || ''}</span>
         </div>
       </div>
       <div class="topbar-search">
-        <span style="color:var(--ink-faint)">⌕</span>
+        <span class="search-ic">${icon('search', 16)}</span>
         <input type="text" placeholder="Search anything…">
       </div>
       <div class="topbar-right">
-        <button class="btn-icon" onclick="STORE.theme=STORE.theme==='dark'?'light':'dark';applyTheme(STORE.theme);render();" title="Toggle theme">${STORE.theme === 'dark' ? '☀️' : '🌙'}</button>
+        <button class="btn-icon" onclick="STORE.theme=STORE.theme==='dark'?'light':'dark';applyTheme(STORE.theme);render();" title="Toggle theme">${STORE.theme === 'dark' ? icon('sun') : icon('moon')}</button>
         <div style="position:relative">
-          <button class="btn-icon" onclick="toast('No new notifications','info')" title="Notifications">🔔
+          <button class="btn-icon" onclick="toast('No new notifications','info')" title="Notifications" aria-label="Notifications">${icon('bell')}
             <span class="notif-dot"></span>
           </button>
         </div>

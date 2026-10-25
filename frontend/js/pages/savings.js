@@ -36,13 +36,13 @@ function renderSavings(c) {
           <div class="g-pct">saved of ${fmt(g.target)}</div>
           <div class="goal-track"><div class="goal-fill" style="width:${pct}%"></div></div>
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div class="goal-eta">📅 Est. completion: ${escapeHtml(g.eta || '—')}</div>
+            <div class="goal-eta">${icon('calendar', 14)} Est. completion: ${escapeHtml(g.eta || '—')}</div>
             <div style="font-size:12.5px;color:var(--ink-muted)">+${fmt(g.monthly)}/mo</div>
           </div>
           <div style="margin-top:14px;display:flex;gap:8px">
             <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center" onclick="openContributeModal(${g.id})">+ Add funds</button>
-            <button class="btn-icon" onclick="openGoalModal(${g.id})" style="border-radius:10px">✎</button>
-            <button class="btn-icon" onclick="deleteGoal(${g.id})" style="border-radius:10px">✕</button>
+            <button class="btn-icon" onclick="openGoalModal(${g.id})" style="border-radius:10px" aria-label="Edit">${icon('edit', 16)}</button>
+            <button class="btn-icon" onclick="deleteGoal(${g.id})" style="border-radius:10px" aria-label="Delete">${icon('close', 16)}</button>
           </div>
         </div>`;
       }).join('')}

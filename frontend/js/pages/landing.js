@@ -14,56 +14,55 @@ function renderLanding(app) {
     <div class="landing-cta">
       <button class="btn btn-ghost btn-sm" onclick="goAuth('login')">Sign in</button>
       <button class="btn btn-primary btn-sm" onclick="goAuth('register')">Start free</button>
-      <button class="btn-icon" onclick="STORE.theme=STORE.theme==='dark'?'light':'dark'; applyTheme(STORE.theme); render();" title="Toggle theme" style="border-radius:50%">
-        ${STORE.theme === 'dark' ? '☀️' : '🌙'}
+      <button class="btn-icon" onclick="STORE.theme=STORE.theme==='dark'?'light':'dark'; applyTheme(STORE.theme); render();" title="Toggle theme" aria-label="Toggle theme">
+        ${STORE.theme === 'dark' ? icon('sun') : icon('moon')}
       </button>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero grain">
-    <div style="position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(204,131,80,0.18),transparent 70%);top:-100px;right:100px;z-index:0;pointer-events:none"></div>
-    <div style="position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(181,86,46,0.14),transparent 70%);bottom:0;left:0;z-index:0;pointer-events:none"></div>
-    <div style="position:relative;z-index:1" class="fade-up">
-      <div class="hero-eyebrow"><span class="eyebrow">Intelligent Finance</span><span class="tag" style="font-size:11px">✦ AI-Powered</span></div>
-      <h1 class="h-display">Your money,<br><em>quietly guided</em></h1>
-      <p class="lead">Hearth brings calm clarity to your financial life — tracking, predicting, and optimizing with an AI that actually understands how you live.</p>
+  <section class="hero">
+    <div class="hero-copy fade-up">
+      <div class="hero-eyebrow"><span class="eyebrow">Personal finance</span><span class="tag">${icon('spark', 13)} AI insights</span></div>
+      <h1 class="h-display">Your money, <em>quietly guided</em></h1>
+      <p class="lead">Hearth keeps your accounts, bills and goals in one place, and its AI points out the patterns in how you actually spend.</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="goAuth('register')">Start for free →</button>
+        <button class="btn btn-primary" onclick="goAuth('register')">Start for free ${icon('arrow', 16)}</button>
         <button class="btn btn-ghost" onclick="goAuth('login')">View demo</button>
       </div>
       <div class="hero-proof">
-        <div><span class="num" style="color:var(--copper-bright)">50K+</span><span>people trust Hearth</span></div>
-        <div><span class="num" style="color:var(--copper-bright)">$2.4B</span><span>tracked monthly</span></div>
-        <div><span class="num" style="color:var(--copper-bright)">4.9★</span><span>average rating</span></div>
+        <div><span class="num">50K+</span><span>people trust Hearth</span></div>
+        <div><span class="num">$2.4B</span><span>tracked monthly</span></div>
+        <div><span class="num">4.9</span><span>average rating</span></div>
       </div>
     </div>
-    <div class="hero-mock fade-up" style="animation-delay:.15s">
-      <div class="mock-card grain">
-        <div class="eyebrow" style="margin-bottom:14px">Net Worth</div>
-        <div style="font-family:var(--font-display);font-size:34px;font-weight:600;margin-bottom:4px">$92,890<span style="font-size:.48em;color:var(--copper-bright);margin-left:6px">↑12.4%</span></div>
-        <div style="font-size:13px;color:var(--ink-muted);margin-bottom:22px">vs last quarter</div>
-        <div style="display:flex;gap:16px;margin-bottom:18px">
-          ${[['Income', '$7,340', 'pos'], ['Expenses', '$3,290', 'neg'], ['Saved', '$4,050', 'pos']].map(([l, v, t]) => `
-          <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 12px">
-            <div style="font-size:11.5px;color:var(--ink-muted);margin-bottom:6px">${l}</div>
-            <div style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:${t === 'pos' ? 'var(--amber)' : 'var(--coral)'}">${v}</div>
-          </div>`).join('')}
+
+    <div class="hero-mock fade-up" style="animation-delay:.12s" data-ui>
+      <div class="statement">
+        <div class="st-head">
+          <div class="brand"><div class="brand-mark">H</div>Hearth</div>
+          <span>Quarterly statement</span>
         </div>
-        <div style="height:6px;background:var(--border);border-radius:10px;overflow:hidden">
-          <div style="width:64%;height:100%;background:linear-gradient(90deg,var(--copper-bright),var(--terracotta));border-radius:10px"></div>
+        <div class="st-label">Net worth</div>
+        <div class="st-total">$92,890 <span class="st-change">${icon('up', 14)} 12.4%</span></div>
+        <div class="st-sub">vs last quarter</div>
+        <div class="st-lines">
+          <div class="st-line"><span>Income</span><i></i><b class="pos">$7,340</b></div>
+          <div class="st-line"><span>Expenses</span><i></i><b class="neg">−$3,290</b></div>
+          <div class="st-line total"><span>Saved</span><i></i><b class="pos">$4,050</b></div>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-muted);margin-top:6px"><span>64% savings rate</span><span>Goal: 70%</span></div>
+        <div class="st-bar"><div style="width:64%"></div><span class="st-goal" style="left:70%"></span></div>
+        <div class="st-bar-legend"><span>64% savings rate</span><span>Goal: 70%</span></div>
       </div>
-      <div class="mock-float f1" style="min-width:190px">
-        <div class="eyebrow" style="margin-bottom:8px;font-size:10px">AI Insight ✦</div>
-        <div style="font-size:13.5px;font-weight:700;margin-bottom:4px">Save $340 this month</div>
-        <div style="font-size:12px;color:var(--ink-muted)">Dining spend is 28% above average</div>
+      <div class="stamp stamp-insight">
+        <div class="stamp-k">AI insight</div>
+        <strong>Save $340 this month</strong>
+        <span>Dining spend is 28% above average</span>
       </div>
-      <div class="mock-float f2" style="min-width:170px">
-        <div style="font-size:12px;color:var(--ink-muted);margin-bottom:6px">Health Score</div>
-        <div style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--copper-bright)">82 <span style="font-size:.5em;color:var(--ink-muted)">/ 100</span></div>
-        <div style="font-size:12px;color:var(--amber)">↑ 6 pts this month</div>
+      <div class="stamp stamp-score">
+        <div class="stamp-k">Health score</div>
+        <strong>82<small>/100</small></strong>
+        <span class="pos">${icon('up', 12)} 6 pts this month</span>
       </div>
     </div>
   </section>
@@ -71,21 +70,21 @@ function renderLanding(app) {
   <!-- FEATURES -->
   <section class="section" id="features">
     <div class="section-head">
-      <span class="eyebrow">Everything you need</span>
+      <span class="eyebrow">What's included</span>
       <h2 class="h-display">Finance tools that feel <em class="h-serif-italic">human</em></h2>
-      <p>Built for people who want clarity without complexity — every feature designed to reduce stress, not add it.</p>
+      <p>Each one does a single job: show you where the money went, and what's coming next.</p>
     </div>
     <div class="feature-grid stagger">
       ${[
-        ['🧠', 'AI Insights', 'Spending pattern detection, monthly expense prediction, and smart budget suggestions — all personalized to you.'],
-        ['📊', 'Visual Analytics', 'Beautiful cash flow charts, category breakdowns, and trend analysis that tell your financial story.'],
-        ['🎯', 'Savings Goals', 'Set targets, track progress with progress rings, and get monthly savings recommendations.'],
-        ['📅', 'Bill Reminders', 'Never miss a payment. Smart calendar view with upcoming bills and recurring expense tracking.'],
-        ['💳', 'Multi-Account', 'Connect checking, savings, investments, and credit cards for a complete picture.'],
-        ['🛡️', 'Security First', 'Bank-level encryption, hashed passwords, and zero data selling. Your data stays yours.'],
+        ['brain', 'AI Insights', 'Spots spending patterns, predicts next month\'s expenses and suggests budgets, based on your own history.'],
+        ['chart', 'Visual Analytics', 'Cash flow, category breakdowns and trends, charted from your real transactions.'],
+        ['target', 'Savings Goals', 'Set a target and follow it with progress rings and a suggested monthly amount.'],
+        ['calendar', 'Bill Reminders', 'A calendar of upcoming bills and recurring expenses, so a payment never slips past you.'],
+        ['card', 'Multi-Account', 'Checking, savings, investments and credit cards, all in one view.'],
+        ['shield', 'Security First', 'Bank-level encryption and hashed passwords, and we never sell your data.'],
       ].map(([i, t, d]) => `
-      <div class="card card-hover feature-card grain">
-        <div class="feature-icon">${i}</div>
+      <div class="feature-card">
+        <div class="feature-icon">${icon(i, 22)}</div>
         <h3>${t}</h3>
         <p>${d}</p>
       </div>`).join('')}
@@ -96,18 +95,18 @@ function renderLanding(app) {
   <section class="section">
     <div class="ai-spotlight">
       <div>
-        <span class="eyebrow" style="display:block;margin-bottom:16px">Powered by AI</span>
-        <h2 class="h-display" style="font-size:clamp(26px,3vw,36px);margin-bottom:14px">Your personal<br><em class="h-serif-italic">financial advisor</em></h2>
-        <p style="color:var(--ink-muted);line-height:1.6;margin-bottom:24px">Hearth's AI analyzes your patterns to deliver insights that go beyond dashboards — it understands context, detects anomalies, and guides smarter decisions.</p>
-        <button class="btn btn-primary btn-sm" onclick="goAuth('register')">Try it free →</button>
+        <span class="eyebrow">Powered by AI</span>
+        <h2 class="h-display">Your personal <em class="h-serif-italic">financial advisor</em></h2>
+        <p>Hearth's AI reads your transactions in context. It flags unusual spending, forecasts the month, and suggests what to change.</p>
+        <button class="btn btn-primary btn-sm" onclick="goAuth('register')">Try it free ${icon('arrow', 15)}</button>
       </div>
       <div>
         <div class="ai-pill-list">
           ${[
-            ['Spending Anomaly Detected', 'Your dining spend this week is 2.4× your usual — Hearth flagged it before you noticed.'],
-            ['Monthly Forecast', "Based on your patterns, you'll spend ~$3,420 this month. Budget is $3,800. You're on track."],
-            ['Savings Opportunity', 'Switching to annual subscriptions could save you $184/year. One-tap to review.'],
-            ['Financial Health Score', 'Your score jumped 8 points — lower credit utilization and consistent savings.'],
+            ['Spending Anomaly Detected', 'Your dining spend this week is 2.4× your usual. Hearth flagged it before you noticed.'],
+            ['Monthly Forecast', "Based on your patterns, you'll spend about $3,420 this month against a $3,800 budget. You're on track."],
+            ['Savings Opportunity', 'Switching to annual subscriptions could save you $184 a year. One tap to review.'],
+            ['Financial Health Score', 'Your score went up 8 points, thanks to lower credit utilization and steady saving.'],
           ].map(([t, d]) => `
           <div class="ai-pill">
             <span class="dot"></span>
@@ -122,16 +121,16 @@ function renderLanding(app) {
   <section class="section">
     <div class="quote-block fade-up">
       <p>"Hearth is the only finance app I've actually used past January. The AI caught a subscription I'd forgotten about and the insights feel like they're written for me, not just generated."</p>
-      <div class="who">— Zara M., Freelance Designer · Saved $3,200 in 4 months</div>
+      <div class="who">Zara M., Freelance Designer · Saved $3,200 in 4 months</div>
     </div>
   </section>
 
   <!-- CTA -->
-  <div class="cta-band grain">
-    <span class="eyebrow" style="display:block;margin-bottom:16px;opacity:.75">Start today, free</span>
-    <h2 class="h-display">Ready to see where<br><em class="h-serif-italic">your money really goes?</em></h2>
-    <p>Join 50,000+ people who chose calm over chaos.</p>
-    <button class="btn btn-primary" onclick="goAuth('register')">Create your free account →</button>
+  <div class="cta-band">
+    <span class="eyebrow">Free to start</span>
+    <h2 class="h-display">Ready to see where <em class="h-serif-italic">your money really goes?</em></h2>
+    <p>Join 50,000+ people who already keep track with Hearth.</p>
+    <button class="btn btn-primary" onclick="goAuth('register')">Create your free account ${icon('arrow', 16)}</button>
   </div>
 
   <!-- FOOTER -->
@@ -141,7 +140,7 @@ function renderLanding(app) {
       ${[['Product', ['Features', 'Pricing', 'Security', 'API']], ['Company', ['About', 'Blog', 'Careers', 'Press']], ['Legal', ['Privacy', 'Terms', 'Cookies', 'GDPR']]].map(([h, links]) => `
       <div class="footer-col"><h4>${h}</h4>${links.map((l) => `<a href="#">${l}</a>`).join('')}</div>`).join('')}
     </div>
-    <div style="font-size:13px;color:var(--ink-faint)">© 2025 Hearth · All rights reserved</div>
+    <div class="footer-copy">© 2025 Hearth · All rights reserved</div>
   </footer>
   `;
   window.onscroll = () => {

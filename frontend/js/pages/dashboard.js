@@ -8,23 +8,23 @@ function renderDashboard(c) {
   const savingsRate = STORE.summary ? Math.round(STORE.summary.savings_rate) : 0;
   const catBreakdown = (STORE.summary && STORE.summary.category_breakdown) || [];
   const catTotal = catBreakdown.reduce((s, x) => s + x.amount, 0) || 1;
-  const catColors = ['#E2825F', '#CC8350', '#CE9A52', '#D9A892', '#A8543A', '#B5562E'];
+  const catColors = ['#2747A0', '#1E7A4C', '#C2352B', '#B7791F', '#0F7C8A', '#5B6B8C'];
 
   c.innerHTML = `
   <div class="stagger">
     <!-- AI Insights Strip -->
     <div class="ai-insight-strip">
       ${[
-        { ic: '🧠', t: 'Spending Pattern', d: 'Your dining costs spiked above your 3-month average this week. Consider cooking more at home.' },
-        { ic: '📈', t: 'Monthly Forecast', d: `Projected spend: ${fmt(expense)}. Keep an eye on your budget to stay on track.` },
-        { ic: '💡', t: 'Savings Tip', d: 'Switching subscriptions to annual billing could save you money each year.' },
-        { ic: '🏆', t: 'Financial Health', d: `Your savings rate is ${savingsRate}% this month. Consistent savings = great progress.` },
+        { ic: icon('brain', 20), t: 'Spending Pattern', d: 'Your dining costs spiked above your 3-month average this week. Consider cooking more at home.' },
+        { ic: icon('analytics', 20), t: 'Monthly Forecast', d: `Projected spend: ${fmt(expense)}. Keep an eye on your budget to stay on track.` },
+        { ic: icon('bulb', 20), t: 'Savings Tip', d: 'Switching subscriptions to annual billing could save you money each year.' },
+        { ic: icon('trophy', 20), t: 'Financial Health', d: `Your savings rate is ${savingsRate}% this month. Keep it steady and the goals take care of themselves.` },
       ].map((i) => `<div class="insight-card grain"><div class="ic">${i.ic}</div><strong>${i.t}</strong><p>${i.d}</p></div>`).join('')}
     </div>
 
     <!-- Quick Actions -->
     <div class="quick-actions">
-      ${[['➕ Add Transaction', 'addTx'], ['🏦 Add Account', 'addAcc'], ['📊 New Budget', 'addBudget'], ['🎯 Add Goal', 'addGoal'], ['📄 Export Report', 'er']].map(([l, a]) => `
+      ${[[icon('plus', 16) + ' Add Transaction', 'addTx'], [icon('bank', 16) + ' Add Account', 'addAcc'], [icon('chart', 16) + ' New Budget', 'addBudget'], [icon('target', 16) + ' Add Goal', 'addGoal'], [icon('reports', 16) + ' Export Report', 'er']].map(([l, a]) => `
       <button class="quick-action" onclick="quickAction('${a}')">${l}</button>`).join('')}
     </div>
 
@@ -39,7 +39,7 @@ function renderDashboard(c) {
       <div class="card stat-card grain">
         <div class="label">${l}</div>
         <div class="value num">${v}</div>
-        <span class="change ${pos ? 'pos' : 'neg'}">${pos ? '↑' : '↓'}</span>
+        <span class="change ${pos ? 'pos' : 'neg'}">${pos ? icon('up', 13) : icon('down', 13)}</span>
       </div>`).join('')}
     </div>
 
@@ -61,7 +61,7 @@ function renderDashboard(c) {
             <span class="cat-label">${escapeHtml(x.category)}</span>
             <div class="cat-bar-track"><div class="cat-bar-fill" style="width:${Math.round((x.amount / catTotal) * 100)}%;background:${catColors[i % catColors.length]}"></div></div>
             <span class="cat-amount">${Math.round((x.amount / catTotal) * 100)}%</span>
-          </div>`).join('') : `<div class="empty-state"><div class="empty-icon">📊</div><strong>No spending yet</strong><p>Add transactions to see your breakdown.</p></div>`}
+          </div>`).join('') : `<div class="empty-state"><div class="empty-icon">${icon('chart', 26)}</div><strong>No spending yet</strong><p>Add transactions to see your breakdown.</p></div>`}
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@ function renderDashboard(c) {
     <!-- Second Row -->
     <div class="dash-grid">
       <div class="card dash-panel grain">
-        <div class="panel-head"><h3>Recent Transactions</h3><button class="btn btn-ghost btn-sm" onclick="navigate('transactions')">View all →</button></div>
+        <div class="panel-head"><h3>Recent Transactions</h3><button class="btn btn-ghost btn-sm" onclick="navigate('transactions')">View all</button></div>
         <div class="activity-list">
           ${STORE.transactions.slice(0, 6).map((t) => `
           <div class="activity-item">
@@ -79,7 +79,7 @@ function renderDashboard(c) {
               <div class="meta">${escapeHtml(t.category)} · ${t.date}</div>
             </div>
             <div class="tx-amount ${t.amount > 0 ? 'inc' : 'exp'}">${t.amount > 0 ? '+' : ''}${fmt(t.amount)}</div>
-          </div>`).join('') || `<div class="empty-state"><div class="empty-icon">⇌</div><strong>No transactions yet</strong><p>Add your first transaction to get started.</p></div>`}
+          </div>`).join('') || `<div class="empty-state"><div class="empty-icon">${icon('transactions', 26)}</div><strong>No transactions yet</strong><p>Add your first transaction to get started.</p></div>`}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:20px">
@@ -118,7 +118,7 @@ function renderDashboard(c) {
 
     <!-- Budget Overview -->
     <div class="card dash-panel grain">
-      <div class="panel-head"><h3>Budget Overview</h3><button class="btn btn-ghost btn-sm" onclick="navigate('budget')">Manage →</button></div>
+      <div class="panel-head"><h3>Budget Overview</h3><button class="btn btn-ghost btn-sm" onclick="navigate('budget')">Manage</button></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px">
         ${STORE.budgets.slice(0, 6).map((b) => {
           const pct = Math.min(100, (b.spent / (b.limit || 1)) * 100);
@@ -127,7 +127,7 @@ function renderDashboard(c) {
             <div class="meta"><span class="cat-name">${b.icon} ${escapeHtml(b.category)}</span><span class="amounts">${fmt(b.spent)} / ${fmt(b.limit)}</span></div>
             <div class="budget-track"><div class="budget-fill ${cls}" style="width:${pct}%"></div></div>
           </div>`;
-        }).join('') || `<div class="empty-state"><div class="empty-icon">◎</div><strong>No budgets yet</strong><p>Create a budget category to start tracking.</p></div>`}
+        }).join('') || `<div class="empty-state"><div class="empty-icon">${icon('budget', 26)}</div><strong>No budgets yet</strong><p>Create a budget category to start tracking.</p></div>`}
       </div>
     </div>
   </div>
@@ -158,22 +158,22 @@ function drawCashflowChart() {
   const cc = getChartTheme();
   const cashflow = (STORE.summary && STORE.summary.cashflow) || [];
   const isDark = cc.dark;
-  const gridColor = isDark ? 'rgba(248,244,237,0.05)' : 'rgba(18,14,9,0.05)';
+  const gridColor = isDark ? 'rgba(238,240,243,0.07)' : 'rgba(22,24,29,0.07)';
   charts['cashflow'] = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: cashflow.map((x) => x.month),
       datasets: [
-        { label: 'Income',   data: cashflow.map((x) => x.income),  backgroundColor: isDark ? 'rgba(208,160,56,0.7)' : 'rgba(192,107,48,0.65)', borderRadius: 6, borderSkipped: false },
-        { label: 'Expenses', data: cashflow.map((x) => x.expense), backgroundColor: isDark ? 'rgba(224,112,96,0.55)' : 'rgba(208,72,48,0.45)', borderRadius: 6, borderSkipped: false },
+        { label: 'Income',   data: cashflow.map((x) => x.income),  backgroundColor: isDark ? '#5CC98F' : '#1E7A4C', borderRadius: 6, borderSkipped: false },
+        { label: 'Expenses', data: cashflow.map((x) => x.expense), backgroundColor: isDark ? '#F07A6E' : '#C2352B', borderRadius: 6, borderSkipped: false },
       ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: cc.muted, font: { family: 'Plus Jakarta Sans', size: 12, weight: '600' } } } },
+      plugins: { legend: { labels: { color: cc.muted, font: { family: 'Schibsted Grotesk', size: 12, weight: '600' } } } },
       scales: {
-        x: { ticks: { color: cc.muted, font: { family: 'DM Mono', size: 10 } }, grid: { color: gridColor } },
-        y: { ticks: { color: cc.muted, font: { family: 'DM Mono', size: 10 }, callback: (v) => '$' + v.toLocaleString() }, grid: { color: gridColor } },
+        x: { ticks: { color: cc.muted, font: { family: 'Schibsted Grotesk', size: 10 } }, grid: { color: gridColor } },
+        y: { ticks: { color: cc.muted, font: { family: 'Schibsted Grotesk', size: 10 }, callback: (v) => '$' + v.toLocaleString() }, grid: { color: gridColor } },
       },
     },
   });
@@ -183,7 +183,7 @@ function drawCategoryChart() {
   const ctx = $('cat-chart');
   if (!ctx) return;
   const catBreakdown = (STORE.summary && STORE.summary.category_breakdown) || [];
-  const catColors = ['#E2825F', '#CC8350', '#CE9A52', '#D9A892', '#A8543A', '#B5562E'];
+  const catColors = ['#2747A0', '#1E7A4C', '#C2352B', '#B7791F', '#0F7C8A', '#5B6B8C'];
   charts['cat'] = new Chart(ctx, {
     type: 'doughnut',
     data: {

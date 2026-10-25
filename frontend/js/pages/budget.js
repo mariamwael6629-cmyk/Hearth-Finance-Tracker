@@ -30,8 +30,8 @@ function renderBudget(c) {
               <div><div style="font-weight:700;font-size:15px">${escapeHtml(b.category)}</div><div style="font-size:12px;color:var(--ink-muted)">${Math.round(pct)}% used</div></div>
             </div>
             <div style="display:flex;gap:6px">
-              <button class="btn-icon" style="width:32px;height:32px" onclick="openBudgetModal(${b.id})">✎</button>
-              <button class="btn-icon" style="width:32px;height:32px" onclick="deleteBudget(${b.id})">✕</button>
+              <button class="btn-icon" style="width:32px;height:32px" onclick="openBudgetModal(${b.id})" aria-label="Edit">${icon('edit', 16)}</button>
+              <button class="btn-icon" style="width:32px;height:32px" onclick="deleteBudget(${b.id})" aria-label="Delete">${icon('close', 16)}</button>
             </div>
           </div>
           <div class="budget-row">
@@ -43,10 +43,10 @@ function renderBudget(c) {
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-muted)">
             <span>${fmt(Math.max(0, b.limit - b.spent))} remaining</span>
-            <span>${pct >= 90 ? '⚠️ Over budget' : pct >= 70 ? '⚡ Watch spending' : '✓ On track'}</span>
+            <span>${pct >= 90 ? icon('alert', 14) + ' Over budget' : pct >= 70 ? icon('alert', 14) + ' Watch spending' : icon('check', 14) + ' On track'}</span>
           </div>
         </div>`;
-      }).join('') || `<div class="empty-state"><div class="empty-icon">◎</div><strong>No budgets yet</strong><p>Add a budget category to start tracking your spending.</p></div>`}
+      }).join('') || `<div class="empty-state"><div class="empty-icon">${icon('budget', 26)}</div><strong>No budgets yet</strong><p>Add a budget category to start tracking your spending.</p></div>`}
     </div>
   </div>`;
 }

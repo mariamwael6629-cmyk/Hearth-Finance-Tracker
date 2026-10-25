@@ -12,7 +12,7 @@ function renderProfile(c) {
           <div style="font-family:var(--font-display);font-size:22px;font-weight:600;margin-bottom:4px">${escapeHtml(u.name)}</div>
           <div style="font-size:14px;color:var(--ink-muted);margin-bottom:10px">${escapeHtml(u.email)}</div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <span class="tag">✦ Hearth Member</span>
+            <span class="tag">Hearth Member</span>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ async function saveProfileInfo(formEl) {
   const data = Object.fromEntries(new FormData(formEl).entries());
   try {
     STORE.currentUser = await api.patch('/auth/me', data);
-    toast('Profile updated ✦', 'success');
+    toast('Profile updated', 'success');
     render();
   } catch (e) {
     toast(e.message, 'error');
@@ -55,7 +55,7 @@ async function saveFinancialProfile(formEl) {
   data.savings_target = parseFloat(data.savings_target) || 0;
   try {
     STORE.currentUser = await api.patch('/auth/me', data);
-    toast('Financial profile updated ✦', 'success');
+    toast('Financial profile updated', 'success');
     render();
   } catch (e) {
     toast(e.message, 'error');

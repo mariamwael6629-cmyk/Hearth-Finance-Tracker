@@ -56,7 +56,7 @@ async function handleRegister(formEl) {
     STORE.currentUser = result.user;
     await loadAllData();
     navigate('dashboard');
-    toast(`Welcome to Hearth, ${STORE.currentUser.first_name}! ✦`, 'success');
+    toast(`Welcome to Hearth, ${STORE.currentUser.first_name}`, 'success');
   } catch (e) {
     STORE.authError = e.message;
     render();
@@ -72,7 +72,7 @@ async function handleLogin(formEl) {
     STORE.currentUser = result.user;
     await loadAllData();
     navigate('dashboard');
-    toast(`Welcome back, ${STORE.currentUser.first_name}! ✦`, 'success');
+    toast(`Welcome back, ${STORE.currentUser.first_name}`, 'success');
   } catch (e) {
     STORE.authError = e.message;
     render();

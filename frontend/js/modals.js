@@ -10,7 +10,7 @@ function openModal(title, bodyHtml, onSubmit) {
     <div class="modal">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
         <h3 style="font-family:var(--font-display);font-size:19px;font-weight:600">${title}</h3>
-        <button class="btn-icon" style="width:32px;height:32px" onclick="closeModal()">✕</button>
+        <button class="btn-icon" style="width:32px;height:32px" onclick="closeModal()" aria-label="Close">${icon('close', 16)}</button>
       </div>
       <form id="modal-form" class="auth-form">${bodyHtml}</form>
     </div>`;
@@ -50,7 +50,7 @@ function openTransactionModal() {
       });
       closeModal();
       await refreshData();
-      toast('Transaction added ✦', 'success');
+      toast('Transaction added', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -70,7 +70,7 @@ function openAccountModal() {
       await api.post('/accounts', { name: data.name, type: data.type, balance: parseFloat(data.balance) || 0, color: data.color });
       closeModal();
       await refreshData();
-      toast('Account added ✦', 'success');
+      toast('Account added', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -82,7 +82,7 @@ function openBudgetModal(id) {
     <div class="input-wrap"><label>Category</label><input class="input" name="category" value="${b ? escapeHtml(b.category) : ''}" required></div>
     <div class="input-wrap"><label>Monthly limit</label><input class="input" name="limit" type="number" step="0.01" value="${b ? b.limit : ''}" required></div>
     <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="${b ? b.icon : '💰'}"></div>
-    <div class="input-wrap"><label>Color</label><input class="input" name="color" type="color" value="${b ? b.color : '#CC8350'}"></div>
+    <div class="input-wrap"><label>Color</label><input class="input" name="color" type="color" value="${b ? b.color : '#2747A0'}"></div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save budget</button>
   `, async (data) => {
     try {
@@ -91,7 +91,7 @@ function openBudgetModal(id) {
       else await api.post('/budgets', { ...payload, spent: 0, month: '' });
       closeModal();
       await refreshData();
-      toast('Budget saved ✦', 'success');
+      toast('Budget saved', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -113,7 +113,7 @@ function openGoalModal(id) {
       else await api.post('/goals', { ...payload, saved: 0 });
       closeModal();
       await refreshData();
-      toast('Goal saved ✦', 'success');
+      toast('Goal saved', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -129,7 +129,7 @@ function openContributeModal(id) {
       await api.post(`/goals/${id}/contribute`, { amount: parseFloat(data.amount) });
       closeModal();
       await refreshData();
-      toast('Funds added ✦', 'success');
+      toast('Funds added', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -152,7 +152,7 @@ function openSubscriptionModal(id) {
       else await api.post('/subscriptions', payload);
       closeModal();
       await refreshData();
-      toast('Subscription saved ✦', 'success');
+      toast('Subscription saved', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -175,7 +175,7 @@ function openBillModal(id) {
       else await api.post('/bills', payload);
       closeModal();
       await refreshData();
-      toast('Bill saved ✦', 'success');
+      toast('Bill saved', 'success');
     } catch (e) { toast(e.message, 'error'); }
   });
 }

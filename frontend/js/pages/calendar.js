@@ -51,8 +51,8 @@ function renderCalendar(c) {
                 <span class="num" style="font-weight:700;font-size:15px">${fmt(b.amount)}</span>
                 <span class="bill-status ${b.status}">${b.status.charAt(0).toUpperCase() + b.status.slice(1)}</span>
               </div>
-              <button class="btn-icon" style="width:28px;height:28px;flex-shrink:0" onclick="deleteBill(${b.id})">✕</button>
-            </div>`).join('') || `<div class="empty-state"><div class="empty-icon">▦</div><strong>No bills yet</strong><p>Add a bill reminder to stay on top of payments.</p></div>`}
+              <button class="btn-icon" style="width:28px;height:28px;flex-shrink:0" onclick="deleteBill(${b.id})" aria-label="Delete">${icon('close', 16)}</button>
+            </div>`).join('') || `<div class="empty-state"><div class="empty-icon">${icon('calendar', 26)}</div><strong>No bills yet</strong><p>Add a bill reminder to stay on top of payments.</p></div>`}
           </div>
         </div>
       </div>

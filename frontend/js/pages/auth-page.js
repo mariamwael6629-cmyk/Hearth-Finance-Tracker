@@ -16,11 +16,11 @@ function renderAuth(app) {
         </div>
       </div>
       <div style="display:flex;gap:16px;flex-wrap:wrap">
-        <div class="tag">✓ Hashed passwords</div>
-        <div class="tag">✓ No ads, ever</div>
-        <div class="tag">✓ Free to start</div>
+        <div class="tag">${icon('check', 14)} Hashed passwords</div>
+        <div class="tag">${icon('check', 14)} No ads, ever</div>
+        <div class="tag">${icon('check', 14)} Free to start</div>
       </div>
-      <div style="position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(204,131,80,0.15),transparent 70%);bottom:-80px;right:-60px;pointer-events:none"></div>
+      
     </div>
     <div class="auth-form-side">
       <div class="auth-card fade-up">
@@ -44,11 +44,11 @@ function renderLogin() {
     <div class="input-wrap"><label>Email address</label><input class="input" name="email" type="email" placeholder="you@example.com" required></div>
     <div class="input-wrap"><label>Password</label><input class="input" name="password" type="password" placeholder="••••••••" required></div>
     <div class="checkbox-row">
-      <label><span class="chk">✓</span> Remember me</label>
+      <label><span class="chk">${icon('check', 12)}</span> Remember me</label>
       <button type="button" style="color:var(--copper-bright);font-weight:600;font-size:13.5px" onclick="STORE.authMode='forgot';render()">Forgot password?</button>
     </div>
-    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Sign in →</button>
-    <button class="btn btn-ghost" type="button" style="width:100%;justify-content:center" onclick="fillDemoLogin(this.form)">✦ Use demo account</button>
+    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Sign in</button>
+    <button class="btn btn-ghost" type="button" style="width:100%;justify-content:center" onclick="fillDemoLogin(this.form)">Use demo account</button>
   </form>`;
 }
 
@@ -73,7 +73,7 @@ function renderRegister() {
         ${Object.keys(CURRENCIES).map((c) => `<option value="${c}">${c} — ${CURRENCIES[c]}</option>`).join('')}
       </select>
     </div>
-    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Create account →</button>
+    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Create account</button>
   </form>`;
 }
 
@@ -81,7 +81,7 @@ function renderForgot() {
   return `<div class="auth-form">
     <p style="font-size:14.5px;color:var(--ink-muted);margin-bottom:6px">Enter your email and we'll send a reset link.</p>
     <div class="input-wrap"><label>Email address</label><input class="input" type="email" placeholder="you@example.com"></div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="toast('Reset link sent to your email','success')">Send reset link →</button>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="toast('Reset link sent to your email','success')">Send reset link</button>
     <button style="width:100%;text-align:center;padding:12px;font-size:14px;color:var(--ink-muted);font-weight:600" onclick="STORE.authMode='login';render()">← Back to sign in</button>
   </div>`;
 }

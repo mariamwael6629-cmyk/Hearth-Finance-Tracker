@@ -17,11 +17,11 @@ function renderTransactions(c) {
   <div class="stagger">
     <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
       <div class="search-bar">
-        <span style="color:var(--ink-faint)">⌕</span>
+        <span class="search-ic">${icon('search', 16)}</span>
         <input type="text" placeholder="Search transactions…" value="${escapeHtml(STORE.txSearch)}" oninput="STORE.txSearch=this.value;STORE.txPage=1;renderTransactions($('page-content'))">
       </div>
       <button class="btn btn-primary btn-sm" onclick="openTransactionModal()">+ Add</button>
-      <button class="btn btn-ghost btn-sm" onclick="toast('Transactions exported ✦','success')">↓ Export</button>
+      <button class="btn btn-ghost btn-sm" onclick="toast('Transactions exported','success')">${icon('download', 15)} Export</button>
     </div>
     <div class="filter-bar">
       ${cats.map((cat) => `<button class="filter-chip ${STORE.txFilter === cat ? 'active' : ''}" onclick="STORE.txFilter='${escapeHtml(cat)}';STORE.txPage=1;renderTransactions($('page-content'))">${escapeHtml(cat)}</button>`).join('')}
@@ -40,9 +40,9 @@ function renderTransactions(c) {
               <td><span class="num muted" style="font-size:13px">${t.date}</span></td>
               <td><span style="font-size:13px;color:var(--ink-muted)">${acc ? escapeHtml(acc.name) : '—'}</span></td>
               <td style="text-align:right"><span class="tx-amount ${t.amount > 0 ? 'inc' : 'exp'} num">${t.amount > 0 ? '+' : ''}${fmt(t.amount)}</span></td>
-              <td><button class="btn-icon" style="width:30px;height:30px" onclick="deleteTransaction(${t.id})" title="Delete">✕</button></td>
+              <td><button class="btn-icon" style="width:30px;height:30px" onclick="deleteTransaction(${t.id})" title="Delete" aria-label="Delete">${icon('close', 16)}</button></td>
             </tr>`;
-          }).join('') : `<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🔍</div><strong>No transactions found</strong><p>Try adjusting your filters or search term.</p></div></td></tr>`}
+          }).join('') : `<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">${icon('search', 26)}</div><strong>No transactions found</strong><p>Try adjusting your filters or search term.</p></div></td></tr>`}
         </tbody>
       </table>
       ${totalPages > 1 ? `<div class="pagination">
@@ -52,7 +52,7 @@ function renderTransactions(c) {
       </div>` : ''}
     </div>
     <!-- Summary row -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px">
+    <div class="tx-summary" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px">
       ${[['Total Income', filtered.filter((t) => t.amount > 0).reduce((s, t) => s + t.amount, 0), 'inc'], ['Total Expenses', Math.abs(filtered.filter((t) => t.amount < 0).reduce((s, t) => s + t.amount, 0)), 'exp'], ['Net', filtered.reduce((s, t) => s + t.amount, 0), filtered.reduce((s, t) => s + t.amount, 0) >= 0 ? 'inc' : 'exp']].map(([l, v, cls]) => `
       <div class="card" style="padding:18px;text-align:center">
         <div style="font-size:12px;color:var(--ink-muted);margin-bottom:6px">${l}</div>

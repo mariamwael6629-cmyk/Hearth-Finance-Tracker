@@ -27,10 +27,10 @@ function renderSubscriptions(c) {
           <div class="next">Next charge: ${escapeHtml(s.next_charge)}</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px">
-          <button class="btn-icon" style="border-radius:10px;flex-shrink:0" onclick="openSubscriptionModal(${s.id})">✎</button>
-          <button class="btn-icon" style="border-radius:10px;flex-shrink:0" onclick="deleteSubscription(${s.id})">✕</button>
+          <button class="btn-icon" style="border-radius:10px;flex-shrink:0" onclick="openSubscriptionModal(${s.id})" aria-label="Edit">${icon('edit', 16)}</button>
+          <button class="btn-icon" style="border-radius:10px;flex-shrink:0" onclick="deleteSubscription(${s.id})" aria-label="Delete">${icon('close', 16)}</button>
         </div>
-      </div>`).join('') || `<div class="empty-state"><div class="empty-icon">↻</div><strong>No subscriptions yet</strong><p>Add a subscription to track recurring costs.</p></div>`}
+      </div>`).join('') || `<div class="empty-state"><div class="empty-icon">${icon('subscriptions', 26)}</div><strong>No subscriptions yet</strong><p>Add a subscription to track recurring costs.</p></div>`}
     </div>
   </div>`;
 }
