@@ -19,7 +19,7 @@ function renderSubscriptions(c) {
     <div class="sub-grid">
       ${STORE.subscriptions.map((s) => `
       <div class="card sub-card grain card-hover">
-        <div class="sub-logo">${s.icon}</div>
+        <div class="sub-logo">${dataIcon(s.icon, 18)}</div>
         <div class="sub-info" style="flex:1">
           <div class="name">${escapeHtml(s.name)}</div>
           <div class="cycle">${escapeHtml(s.cycle)} · ${escapeHtml(s.category)}</div>

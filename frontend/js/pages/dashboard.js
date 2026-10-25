@@ -73,7 +73,7 @@ function renderDashboard(c) {
         <div class="activity-list">
           ${STORE.transactions.slice(0, 6).map((t) => `
           <div class="activity-item">
-            <div class="tx-icon">${t.icon}</div>
+            <div class="tx-icon">${dataIcon(t.icon, 18)}</div>
             <div class="tx-info">
               <div class="name">${escapeHtml(t.merchant)}</div>
               <div class="meta">${escapeHtml(t.category)} · ${t.date}</div>
@@ -124,7 +124,7 @@ function renderDashboard(c) {
           const pct = Math.min(100, (b.spent / (b.limit || 1)) * 100);
           const cls = pct >= 90 ? 'crit' : pct >= 70 ? 'warn' : 'ok';
           return `<div class="budget-row">
-            <div class="meta"><span class="cat-name">${b.icon} ${escapeHtml(b.category)}</span><span class="amounts">${fmt(b.spent)} / ${fmt(b.limit)}</span></div>
+            <div class="meta"><span class="cat-name">${dataIcon(b.icon, 18)} ${escapeHtml(b.category)}</span><span class="amounts">${fmt(b.spent)} / ${fmt(b.limit)}</span></div>
             <div class="budget-track"><div class="budget-fill ${cls}" style="width:${pct}%"></div></div>
           </div>`;
         }).join('') || `<div class="empty-state"><div class="empty-icon">${icon('budget', 26)}</div><strong>No budgets yet</strong><p>Create a budget category to start tracking.</p></div>`}

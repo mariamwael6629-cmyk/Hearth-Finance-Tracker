@@ -41,3 +41,62 @@ const ICON_PATHS = {
 function icon(name, size = 18, cls = '') {
   return `<svg class="svg-ic ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ''}</svg>`;
 }
+
+// Category icons. Transactions, budgets, bills and goals store an emoji in
+// the data; dataIcon() draws it with this stroke set instead.
+const DATA_ICON_PATHS = {
+  cloud: '<path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/>',
+  coffee: '<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/>',
+  bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  plane: '<path d="M10.5 13.5L3 11l1.5-1.5 8 1 4-4a2.1 2.1 0 0 1 3 3l-4 4 1 8L15 23l-2.5-7.5L9 19v3l-2 1-1-4-4-1 1-2h3z"/>',
+  leaf: '<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15zM5 19l7-7"/>',
+  dining: '<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 0-3 2-3 5v5h3v8"/>',
+  education: '<path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/>',
+  palette: '<path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.5 0-1.2-1-1.5-1-2.5 0-.8.7-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-4.7-4-8.5-9-8.5z"/>',
+  music: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+  home: '<path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5"/>',
+  pill: '<rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M8.5 8.5l7 7"/>',
+  drop: '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+  dumbbell: '<path d="M6 6v12M18 6v12M3 9v6M21 9v6M6 12h12"/>',
+  coins: '<ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v4c0 1.7 2.7 3 6 3s6-1.3 6-3V7M9 14v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-4c0-1.7-2.7-3-6-3"/>',
+  laptop: '<rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
+  book: '<path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/>',
+  signal: '<path d="M5 12a7 7 0 0 1 14 0M8.5 12a3.5 3.5 0 0 1 7 0M12 12v9"/>',
+  box: '<path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  tv: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 3l-3 3M12 3l3 3"/>',
+  car: '<path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM7 19v2M17 19v2"/><circle cx="7.5" cy="13" r="1"/><circle cx="16.5" cy="13" r="1"/>',
+  bag: '<path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/>',
+  cart: '<path d="M3 4h2l2.4 11h10.2L20 8H7"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/>',
+  wellness: '<circle cx="12" cy="5" r="2"/><path d="M4 21c2-3 5-4 8-4s6 1 8 4M12 7v6M7 11l5 2 5-2"/>',
+};
+const DATA_ICON_MAP = {
+  '☁': 'cloud', '☕': 'coffee', '⚡': 'bolt', '✈': 'plane', '🌿': 'leaf', '🍽': 'dining', '🎓': 'education',
+  '🎨': 'palette', '🎵': 'music', '🏠': 'home', '💊': 'pill', '💧': 'drop', '💪': 'dumbbell', '💰': 'coins',
+  '💻': 'laptop', '💼': 'briefcase', '📚': 'book', '📡': 'signal', '📦': 'box', '📱': 'phone', '📺': 'tv',
+  '🚗': 'car', '🛍': 'bag', '🛒': 'cart', '🧘': 'wellness',
+  // these reuse the chrome set
+  '🎯': 'target', '💳': 'card', '📈': 'up', '🔁': 'subscriptions', '🛡': 'shield', '🧾': 'receipt',
+};
+function dataIcon(emoji, size = 18) {
+  const key = String(emoji || '').replace(/\uFE0F/g, '');
+  const name = DATA_ICON_MAP[key];
+  const path = DATA_ICON_PATHS[name] || ICON_PATHS[name] || ICON_PATHS.receipt;
+  return `<svg class="svg-ic" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+}
+
+// Icon picker for the add/edit forms. Values stay the stored emoji so old
+// and new records work the same; people only see the names.
+const DATA_ICON_CHOICES = [
+  ['💳', 'Card'], ['💰', 'Money'], ['🏠', 'Home'], ['🛒', 'Groceries'], ['🍽', 'Dining'], ['☕', 'Coffee'],
+  ['🚗', 'Transport'], ['✈', 'Travel'], ['⚡', 'Utilities'], ['💧', 'Water'], ['📡', 'Internet'], ['📱', 'Phone'],
+  ['📺', 'Streaming'], ['🎵', 'Music'], ['🔁', 'Subscription'], ['🛍', 'Shopping'], ['📦', 'Delivery'], ['💊', 'Health'],
+  ['💪', 'Fitness'], ['🧘', 'Wellness'], ['🎓', 'Education'], ['📚', 'Books'], ['💼', 'Work'], ['💻', 'Tech'],
+  ['☁', 'Cloud'], ['🎨', 'Hobbies'], ['🌿', 'Garden'], ['🛡', 'Insurance'], ['📈', 'Investing'], ['🎯', 'Goal'], ['🧾', 'Bill'],
+];
+function iconSelect(current) {
+  const cur = String(current || '').replace(/\uFE0F/g, '');
+  const known = DATA_ICON_CHOICES.some(([e]) => e === cur);
+  return `<select class="input" name="icon">${known ? '' : `<option value="${cur}" selected>Current icon</option>`}${DATA_ICON_CHOICES.map(([e, label]) => `<option value="${e}" ${e === cur ? 'selected' : ''}>${label}</option>`).join('')}</select>`;
+}

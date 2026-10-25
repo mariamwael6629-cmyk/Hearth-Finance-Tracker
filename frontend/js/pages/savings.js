@@ -24,7 +24,7 @@ function renderSavings(c) {
         const offset = circ * (1 - pct / 100);
         return `<div class="card goal-card grain card-hover">
           <div style="display:flex;justify-content:space-between;align-items:flex-start">
-            <div class="g-icon">${g.icon}</div>
+            <div class="g-icon">${dataIcon(g.icon, 18)}</div>
             <div class="ring-wrap" style="width:90px;height:90px">
               <svg width="90" height="90"><circle class="ring-track" cx="45" cy="45" r="${r}"/><circle class="ring-fill" cx="45" cy="45" r="${r}" stroke="url(#rg${g.id})" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/><defs><linearGradient id="rg${g.id}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#E0A06C"/><stop offset="100%" stop-color="#B5562E"/></linearGradient></defs></svg>
               <div class="ring-center"><span class="num" style="font-size:16px;font-weight:700;color:var(--copper-bright)">${pct}%</span></div>

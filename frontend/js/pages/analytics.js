@@ -25,7 +25,7 @@ function renderAnalytics(c) {
           <div class="trend-row">
             <div style="display:flex;align-items:center;gap:10px">
               <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);width:18px">${String(i + 1).padStart(2, '0')}</span>
-              <span style="font-size:15px">${b.icon}</span>
+              <span style="font-size:15px">${dataIcon(b.icon, 18)}</span>
               <span class="month">${escapeHtml(b.category)}</span>
             </div>
             <div class="bars">

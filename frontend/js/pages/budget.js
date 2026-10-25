@@ -26,7 +26,7 @@ function renderBudget(c) {
         return `<div class="card budget-card grain card-hover">
           <div class="head">
             <div style="display:flex;align-items:center;gap:10px">
-              <div class="tx-icon" style="width:38px;height:38px;border-radius:11px;font-size:17px">${b.icon}</div>
+              <div class="tx-icon" style="width:38px;height:38px;border-radius:11px;font-size:17px">${dataIcon(b.icon, 18)}</div>
               <div><div style="font-weight:700;font-size:15px">${escapeHtml(b.category)}</div><div style="font-size:12px;color:var(--ink-muted)">${Math.round(pct)}% used</div></div>
             </div>
             <div style="display:flex;gap:6px">

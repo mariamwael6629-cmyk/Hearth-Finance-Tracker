@@ -35,7 +35,7 @@ function renderTransactions(c) {
           ${paged.length ? paged.map((t) => {
             const acc = STORE.accounts.find((a) => a.id === t.account_id);
             return `<tr>
-              <td><div style="display:flex;align-items:center;gap:12px"><div class="tx-icon" style="width:36px;height:36px;border-radius:10px;font-size:16px">${t.icon}</div><div><div style="font-weight:700;font-size:14px">${escapeHtml(t.merchant)}</div>${t.recurring ? '<span class="badge badge-copper" style="font-size:10px;margin-top:2px">↻ Recurring</span>' : ''}</div></div></td>
+              <td><div style="display:flex;align-items:center;gap:12px"><div class="tx-icon" style="width:36px;height:36px;border-radius:10px;font-size:16px">${dataIcon(t.icon, 18)}</div><div><div style="font-weight:700;font-size:14px">${escapeHtml(t.merchant)}</div>${t.recurring ? '<span class="badge badge-copper" style="font-size:10px;margin-top:2px">↻ Recurring</span>' : ''}</div></div></td>
               <td><span class="tag" style="font-size:12px">${escapeHtml(t.category)}</span></td>
               <td><span class="num muted" style="font-size:13px">${t.date}</span></td>
               <td><span style="font-size:13px;color:var(--ink-muted)">${acc ? escapeHtml(acc.name) : '—'}</span></td>

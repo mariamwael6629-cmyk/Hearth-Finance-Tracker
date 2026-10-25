@@ -45,7 +45,7 @@ function renderCalendar(c) {
             ${STORE.bills.map((b) => `
             <div class="bill-item">
               <div class="bill-date"><div class="d">${b.due_day}</div><div class="m">${escapeHtml(b.month)}</div></div>
-              <div style="font-size:20px">${b.icon}</div>
+              <div style="font-size:20px">${dataIcon(b.icon, 18)}</div>
               <div class="bill-detail"><div class="n">${escapeHtml(b.name)}</div><div class="s">${b.status === 'paid' ? 'Paid' : `Due ${b.due_day} ${escapeHtml(b.month)}`}</div></div>
               <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
                 <span class="num" style="font-weight:700;font-size:15px">${fmt(b.amount)}</span>

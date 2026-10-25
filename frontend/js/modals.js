@@ -35,7 +35,7 @@ function openTransactionModal() {
     <div class="input-wrap"><label>Category</label><input class="input" name="category" required></div>
     <div class="input-wrap"><label>Date</label><input class="input" name="date" type="date" value="${new Date().toISOString().slice(0, 10)}" required></div>
     <div class="input-wrap"><label>Amount (negative for expense)</label><input class="input" name="amount" type="number" step="0.01" required></div>
-    <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="💳"></div>
+    <div class="input-wrap"><label>Icon</label>${iconSelect('💳')}</div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save transaction</button>
   `, async (data) => {
     try {
@@ -81,7 +81,7 @@ function openBudgetModal(id) {
   openModal(b ? 'Edit Budget' : 'Add Budget Category', `
     <div class="input-wrap"><label>Category</label><input class="input" name="category" value="${b ? escapeHtml(b.category) : ''}" required></div>
     <div class="input-wrap"><label>Monthly limit</label><input class="input" name="limit" type="number" step="0.01" value="${b ? b.limit : ''}" required></div>
-    <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="${b ? b.icon : '💰'}"></div>
+    <div class="input-wrap"><label>Icon</label>${iconSelect(b ? b.icon : '💰')}</div>
     <div class="input-wrap"><label>Color</label><input class="input" name="color" type="color" value="${b ? b.color : '#2747A0'}"></div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save budget</button>
   `, async (data) => {
@@ -104,7 +104,7 @@ function openGoalModal(id) {
     <div class="input-wrap"><label>Target amount</label><input class="input" name="target" type="number" step="0.01" value="${g ? g.target : ''}" required></div>
     <div class="input-wrap"><label>Monthly contribution</label><input class="input" name="monthly" type="number" step="0.01" value="${g ? g.monthly : ''}"></div>
     <div class="input-wrap"><label>Target date (optional)</label><input class="input" name="eta" placeholder="e.g. Dec 2026" value="${g ? escapeHtml(g.eta) : ''}"></div>
-    <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="${g ? g.icon : '🎯'}"></div>
+    <div class="input-wrap"><label>Icon</label>${iconSelect(g ? g.icon : '🎯')}</div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save goal</button>
   `, async (data) => {
     try {
@@ -143,7 +143,7 @@ function openSubscriptionModal(id) {
     <div class="input-wrap select-wrap"><label>Billing cycle</label><select class="input" name="cycle"><option ${s && s.cycle === 'Monthly' ? 'selected' : ''}>Monthly</option><option ${s && s.cycle === 'Annual' ? 'selected' : ''}>Annual</option></select></div>
     <div class="input-wrap"><label>Category</label><input class="input" name="category" value="${s ? escapeHtml(s.category) : ''}"></div>
     <div class="input-wrap"><label>Next charge date</label><input class="input" name="next_charge" placeholder="e.g. Jul 12" value="${s ? escapeHtml(s.next_charge) : ''}"></div>
-    <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="${s ? s.icon : '🔁'}"></div>
+    <div class="input-wrap"><label>Icon</label>${iconSelect(s ? s.icon : '🔁')}</div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save subscription</button>
   `, async (data) => {
     try {
@@ -166,7 +166,7 @@ function openBillModal(id) {
     <div class="input-wrap"><label>Due day (1-31)</label><input class="input" name="due_day" type="number" min="1" max="31" value="${b ? b.due_day : '1'}" required></div>
     <div class="input-wrap"><label>Month label</label><input class="input" name="month" placeholder="e.g. Jul" value="${b ? escapeHtml(b.month) : ''}"></div>
     <div class="input-wrap select-wrap"><label>Status</label><select class="input" name="status"><option value="upcoming" ${b && b.status === 'upcoming' ? 'selected' : ''}>Upcoming</option><option value="paid" ${b && b.status === 'paid' ? 'selected' : ''}>Paid</option></select></div>
-    <div class="input-wrap"><label>Icon (emoji)</label><input class="input" name="icon" value="${b ? b.icon : '🧾'}"></div>
+    <div class="input-wrap"><label>Icon</label>${iconSelect(b ? b.icon : '🧾')}</div>
     <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Save bill</button>
   `, async (data) => {
     try {
